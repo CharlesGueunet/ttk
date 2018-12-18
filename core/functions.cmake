@@ -89,54 +89,55 @@ endfunction()
 # Used by basedCode requiring "Python.h"
 
 function(ttk_find_python)
-  find_package(PythonLibs QUIET)
-  
-  
-  
-  if(PYTHON_INCLUDE_DIRS)
-    include_directories(${PYTHON_INCLUDE_DIRS})
+   if (NOT PYTHONLIBS_FOUND)
 
-#     if (${CMAKE_VERSION} VERSION_GREATER "3.12"
-#       OR ${CMAKE_VERSION} VERSION_EQUAL "3.12")
-#       string(REPLACE \".\" \" \"
-#         PYTHON_VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
-#     else()
-      string(REPLACE "." " "
-        PYTHON_VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
-#     endif()
-    separate_arguments(PYTHON_VERSION_LIST)
-    list(GET PYTHON_VERSION_LIST 0 PYTHON_MAJOR_VERSION)
-    list(GET PYTHON_VERSION_LIST 1 PYTHON_MINOR_VERSION)
+      find_package(PythonLibs QUIET)
 
-    set(TTK_PYTHON_MAJOR_VERSION "${PYTHON_MAJOR_VERSION}"
-      CACHE INTERNAL "TTK_PYTHON_MAJOR_VERSION")
-    set(TTK_PYTHON_MINOR_VERSION "${PYTHON_MINOR_VERSION}"
-      CACHE INTERNAL "TTK_PYTHON_MINOR_VERSION")
-      
-    if(TTK_PYTHON_MAJOR_VERSION)
-      message(STATUS "Python version: ${TTK_PYTHON_MAJOR_VERSION}.${TTK_PYTHON_MINOR_VERSION}")
-    else()
-      message(STATUS "Python version: NOT-FOUND")
-    endif()
+      if(PYTHON_INCLUDE_DIRS)
+         include_directories(${PYTHON_INCLUDE_DIRS})
 
-    find_path(PYTHON_NUMPY_INCLUDE_DIR numpy/arrayobject.h PATHS
-      ${PYTHON_INCLUDE_DIRS}
-      /usr/lib/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION}/site-packages/numpy/core/include/
-      /usr/local/lib/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION}/site-packages/numpy/core/include)
-    if(PYTHON_NUMPY_INCLUDE_DIR)
-        message(STATUS "Numpy headers: ${PYTHON_NUMPY_INCLUDE_DIR}")
-        include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
-    else()
-        message(STATUS "Numpy headers: NOT-FOUND")
-    endif()
-  endif()
-  
-  if(PYTHON_NUMPY_INCLUDE_DIR)
-    option(TTK_ENABLE_SCIKIT_LEARN "Enable scikit-learn support" ON)
-  else()
-    option(TTK_ENABLE_SCIKIT_LEARN "Enable scikit-learn support" OFF)
-    message(STATUS 
-      "Improper python/numpy setup. Disabling sckikit-learn support in TTK.")
-  endif()
-  
+         #     if (${CMAKE_VERSION} VERSION_GREATER "3.12"
+         #       OR ${CMAKE_VERSION} VERSION_EQUAL "3.12")
+         #       string(REPLACE \".\" \" \"
+         #         PYTHON_VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
+         #     else()
+         string(REPLACE "." " "
+            PYTHON_VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
+         #     endif()
+         separate_arguments(PYTHON_VERSION_LIST)
+         list(GET PYTHON_VERSION_LIST 0 PYTHON_MAJOR_VERSION)
+         list(GET PYTHON_VERSION_LIST 1 PYTHON_MINOR_VERSION)
+
+         set(TTK_PYTHON_MAJOR_VERSION "${PYTHON_MAJOR_VERSION}"
+            CACHE INTERNAL "TTK_PYTHON_MAJOR_VERSION")
+         set(TTK_PYTHON_MINOR_VERSION "${PYTHON_MINOR_VERSION}"
+            CACHE INTERNAL "TTK_PYTHON_MINOR_VERSION")
+
+         if(TTK_PYTHON_MAJOR_VERSION)
+            message(STATUS "Python version: ${TTK_PYTHON_MAJOR_VERSION}.${TTK_PYTHON_MINOR_VERSION}")
+         else()
+            message(STATUS "Python version: NOT-FOUND")
+         endif()
+
+         find_path(PYTHON_NUMPY_INCLUDE_DIR numpy/arrayobject.h PATHS
+            ${PYTHON_INCLUDE_DIRS}
+            /usr/lib/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION}/site-packages/numpy/core/include/
+            /usr/local/lib/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION}/site-packages/numpy/core/include)
+         if(PYTHON_NUMPY_INCLUDE_DIR)
+            message(STATUS "Numpy headers: ${PYTHON_NUMPY_INCLUDE_DIR}")
+            include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
+         else()
+            message(STATUS "Numpy headers: NOT-FOUND")
+         endif()
+      endif()
+   endif()
+
+   if(PYTHON_NUMPY_INCLUDE_DIR)
+      option(TTK_ENABLE_SCIKIT_LEARN "Enable scikit-learn support" ON)
+   else()
+      option(TTK_ENABLE_SCIKIT_LEARN "Enable scikit-learn support" OFF)
+      message(STATUS 
+         "Improper python/numpy setup. Disabling sckikit-learn support in TTK.")
+   endif()
+
 endfunction()
