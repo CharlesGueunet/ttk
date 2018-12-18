@@ -3,6 +3,9 @@ include(functions.cmake)
 option(TTK_FORCE_VTK_PARAVIEW "Force to use the VTK bundled from ParaView" OFF)
 mark_as_advanced(TTK_FORCE_VTK_PARAVIEW)
 
+option(TTK_PREVENT_VTK_EXPORT "Prevent TTKVTKTargets to be exported" OFF)
+mark_as_advanced(TTK_PREVENT_VTK_EXPORT)
+
 # find VTK, if none provided but paraview is given,
 # use the VTK provided by paraview with a message
 if(NOT ${TTK_FORCE_VTK_PARAVIEW})
@@ -40,9 +43,12 @@ install(TARGETS ttkAll
 	ARCHIVE DESTINATION lib/ttk
 	LIBRARY DESTINATION lib/ttk)
 
-install(EXPORT TTKVTKTargets
-	NAMESPACE ttk::vtk::
-	DESTINATION lib/cmake/ttk)
+# if (NOT CMAKE_PROJECT_NAME STREQUAL "ParaView")
+if(NOT ${TTK_PREVENT_VTK_EXPORT})
+	install(EXPORT TTKVTKTargets
+		NAMESPACE ttk::vtk::
+		DESTINATION lib/cmake/ttk)
+endif()
 
 configure_file(TTKVTKConfig.cmake.in TTKVTKConfig.cmake @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/TTKVTKConfig.cmake"
