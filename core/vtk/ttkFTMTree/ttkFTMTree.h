@@ -9,6 +9,7 @@
 #include <vtkDataSetAlgorithm.h>
 #include <vtkPointData.h>
 #include <vtkSmartPointer.h>
+#include <vtkSetGet.h>
 // Data array
 #include <vtkCharArray.h>
 #include <vtkDoubleArray.h>

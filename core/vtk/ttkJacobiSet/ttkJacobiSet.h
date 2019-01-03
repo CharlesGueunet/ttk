@@ -49,7 +49,7 @@
 #include                  <vtkSmartPointer.h>
 #include                  <vtkUnsignedShortArray.h>
 #include                  <vtkUnstructuredGrid.h>
-
+#include                  <vtkSetGet.h>
 // ttk code includes
 #include                  <JacobiSet.h>
 #include                  <ttkWrapper.h>

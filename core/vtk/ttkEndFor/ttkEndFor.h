@@ -14,6 +14,7 @@
 
 // VTK includes
 #include <vtkPassInputTypeAlgorithm.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -28,7 +29,7 @@ class ttkEndFor
     public:
 
         static ttkEndFor* New();
-        vtkTypeMacro(ttkEndFor, vtkPassInputTypeAlgorithm)
+        vtkTypeMacro(ttkEndFor, vtkPassInputTypeAlgorithm);
 
         // default ttk setters
         vtkSetMacro(debugLevel_, int);

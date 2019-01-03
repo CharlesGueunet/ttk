@@ -14,6 +14,7 @@
 // VTK includes
 #include <vtkXMLPMultiBlockDataWriter.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -28,7 +29,7 @@ class ttkCinemaWriter
     public:
 
         static ttkCinemaWriter* New();
-        vtkTypeMacro(ttkCinemaWriter, vtkXMLPMultiBlockDataWriter)
+        vtkTypeMacro(ttkCinemaWriter, vtkXMLPMultiBlockDataWriter);
 
         vtkSetMacro(DatabasePath, std::string);
         vtkGetMacro(DatabasePath, std::string);

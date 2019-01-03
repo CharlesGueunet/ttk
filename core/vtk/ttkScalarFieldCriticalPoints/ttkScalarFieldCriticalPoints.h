@@ -43,6 +43,7 @@
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
 #include                  <vtkUnstructuredGrid.h>
+#include                  <vtkSetGet.h>
 
 // ttk baseCode includes
 #include                  <ScalarFieldCriticalPoints.h>

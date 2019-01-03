@@ -30,6 +30,7 @@
 #include<vtkObjectFactory.h>
 #include<vtkPointData.h>
 #include<vtkSmartPointer.h>
+#include<vtkSetGet.h>
 
 // ttk code includes
 #include<Wrapper.h>
@@ -44,7 +45,7 @@ class ttkImportEmbeddingFromTable
   public:
 
     static ttkImportEmbeddingFromTable* New();
-    vtkTypeMacro(ttkImportEmbeddingFromTable, vtkPointSetAlgorithm)
+    vtkTypeMacro(ttkImportEmbeddingFromTable, vtkPointSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

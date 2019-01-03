@@ -58,6 +58,7 @@
 #include <vtkSmartPointer.h>
 #include <vtkSphereSource.h>
 #include <vtkTable.h>
+#include <vtkSetGet.h>
 
 // vtk wrapper includes
 #include <ttkWrapper.h>

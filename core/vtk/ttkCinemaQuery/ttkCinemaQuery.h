@@ -19,6 +19,7 @@
 // VTK includes
 #include <vtkTableAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <CinemaQuery.h>
@@ -33,7 +34,7 @@ class ttkCinemaQuery
 
     public:
         static ttkCinemaQuery* New();
-        vtkTypeMacro(ttkCinemaQuery, vtkTableAlgorithm)
+        vtkTypeMacro(ttkCinemaQuery, vtkTableAlgorithm);
 
         // default ttk setters
         vtkSetMacro(debugLevel_, int);

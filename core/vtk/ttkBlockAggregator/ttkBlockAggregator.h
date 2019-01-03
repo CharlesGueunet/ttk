@@ -16,6 +16,7 @@
 #include <vtkMultiBlockDataSetAlgorithm.h>
 #include <vtkMultiBlockDataSet.h>
 #include <vtkSmartPointer.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -30,7 +31,7 @@ class ttkBlockAggregator
     public:
 
         static ttkBlockAggregator* New();
-        vtkTypeMacro(ttkBlockAggregator, vtkMultiBlockDataSetAlgorithm)
+        vtkTypeMacro(ttkBlockAggregator, vtkMultiBlockDataSetAlgorithm);
 
         vtkSetMacro(ForceReset, bool);
         vtkGetMacro(ForceReset, bool);

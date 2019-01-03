@@ -59,6 +59,7 @@
 #include<vtkPointData.h>
 #include<vtkCellData.h>
 #include<vtkSmartPointer.h>
+#include <vtkSetGet.h>
 
 // ttk code includes
 #include<PersistenceDiagram.h>

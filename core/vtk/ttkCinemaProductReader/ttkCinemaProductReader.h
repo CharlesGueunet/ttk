@@ -17,6 +17,7 @@
 #include <vtkFiltersCoreModule.h>
 #include <vtkInformation.h>
 #include <vtkMultiBlockDataSet.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -31,7 +32,7 @@ class ttkCinemaProductReader
     public:
 
         static ttkCinemaProductReader* New();
-        vtkTypeMacro(ttkCinemaProductReader, vtkMultiBlockDataSetAlgorithm)
+        vtkTypeMacro(ttkCinemaProductReader, vtkMultiBlockDataSetAlgorithm);
 
         // default ttk setters
         vtkSetMacro(debugLevel_, int);

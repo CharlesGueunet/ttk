@@ -35,6 +35,7 @@
 #include                  <vtkIntArray.h>
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>

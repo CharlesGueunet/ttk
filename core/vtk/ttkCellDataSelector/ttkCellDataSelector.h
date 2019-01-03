@@ -30,6 +30,7 @@
 #include<vtkCellData.h>
 #include<vtkSmartPointer.h>
 #include<vtkUnsignedShortArray.h>
+#include<vtkSetGet.h>
 
 // ttk code includes
 #include<Wrapper.h>
@@ -44,7 +45,7 @@ class ttkCellDataSelector
   public:
 
     static ttkCellDataSelector* New();
-    vtkTypeMacro(ttkCellDataSelector, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkCellDataSelector, vtkDataSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

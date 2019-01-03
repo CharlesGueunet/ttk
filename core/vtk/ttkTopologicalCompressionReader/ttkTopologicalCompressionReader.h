@@ -34,6 +34,7 @@
 #include                  <vtkImageData.h>
 #include                  <vtkCellData.h>
 #include                  <vtkAlgorithm.h>
+#include                  <vtkSetGet.h>
 
 // STD
 #include                  <string>

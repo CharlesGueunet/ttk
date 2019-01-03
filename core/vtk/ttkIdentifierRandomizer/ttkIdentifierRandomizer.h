@@ -31,6 +31,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>
@@ -49,7 +50,7 @@ class ttkIdentifierRandomizer
   public:
     
     static ttkIdentifierRandomizer* New();
-    vtkTypeMacro(ttkIdentifierRandomizer, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkIdentifierRandomizer, vtkDataSetAlgorithm);
     
     // default ttk setters
     vtkSetMacro(debugLevel_, int);

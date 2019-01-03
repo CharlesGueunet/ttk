@@ -31,6 +31,7 @@
 #include                  <vtkPointSetAlgorithm.h>
 #include                  <vtkPoints.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>

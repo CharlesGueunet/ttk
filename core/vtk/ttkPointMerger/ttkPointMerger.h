@@ -34,6 +34,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <Geometry.h>
@@ -53,7 +54,7 @@ class ttkPointMerger
   public:
     
     static ttkPointMerger* New();
-    vtkTypeMacro(ttkPointMerger, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkPointMerger, vtkDataSetAlgorithm);
     
     // default ttk setters
     vtkSetMacro(debugLevel_, int);

@@ -36,6 +36,7 @@
 #include<vtkSmartPointer.h>
 #include<vtkInformationVector.h>
 #include<vtkLine.h>
+#include<vtkSetGet.h>
 
 // ttk code includes
 #include<DiscreteGradient.h>

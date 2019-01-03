@@ -14,6 +14,7 @@
 
 // VTK includes
 #include <vtkMultiBlockDataSetAlgorithm.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -28,7 +29,7 @@ class ttkForEachRow
     public:
 
         static ttkForEachRow* New();
-        vtkTypeMacro(ttkForEachRow, vtkMultiBlockDataSetAlgorithm)
+        vtkTypeMacro(ttkForEachRow, vtkMultiBlockDataSetAlgorithm);
 
         // default ttk setters
         vtkSetMacro(debugLevel_, int);

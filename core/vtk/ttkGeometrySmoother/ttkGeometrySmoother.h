@@ -33,6 +33,7 @@
 #include                  <vtkDataSet.h>
 #include                  <vtkDataSetAlgorithm.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>

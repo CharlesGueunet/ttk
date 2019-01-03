@@ -30,6 +30,7 @@
 #include<vtkCellData.h>
 #include<vtkSmartPointer.h>
 #include<vtkTable.h>
+#include <vtkSetGet.h>
 
 // ttk code includes
 #include<Wrapper.h>
@@ -49,7 +50,7 @@ class ttkDataSetToTable
     };
 
     static ttkDataSetToTable* New();
-    vtkTypeMacro(ttkDataSetToTable, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkDataSetToTable, vtkDataSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

@@ -32,6 +32,7 @@
 #include                  <vtkPointData.h>
 #include                  <vtkCellData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>
@@ -46,7 +47,7 @@ class ttkIdentifyByScalarField
   public:
 
     static ttkIdentifyByScalarField* New();
-    vtkTypeMacro(ttkIdentifyByScalarField, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkIdentifyByScalarField, vtkDataSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

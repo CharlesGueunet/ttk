@@ -49,6 +49,7 @@
 #include<vtkObjectFactory.h>
 #include<vtkPointData.h>
 #include<vtkSmartPointer.h>
+#include<vtkSetGet.h>
 
 // ttk baseCode includes
 #include  <ContinuousScatterPlot.h>

@@ -65,6 +65,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 
 // ttk code includes

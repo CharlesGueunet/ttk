@@ -17,8 +17,9 @@
 #pragma once
 
 // VTK includes
-#include <vtkUnstructuredGridAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkUnstructuredGridAlgorithm.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <MeshGraph.h>
@@ -34,7 +35,7 @@ class ttkMeshGraph
     public:
 
         static ttkMeshGraph* New();
-        vtkTypeMacro(ttkMeshGraph, vtkUnstructuredGridAlgorithm)
+        vtkTypeMacro(ttkMeshGraph, vtkUnstructuredGridAlgorithm);
 
         vtkSetMacro(UseVariableSize, bool);
         vtkGetMacro(UseVariableSize, bool);

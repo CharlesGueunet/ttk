@@ -15,6 +15,7 @@
 #include <string>
 
 #include "FTMTree_CT.h"
+#include "Structures.h"
 
 using namespace std;
 using namespace ttk;

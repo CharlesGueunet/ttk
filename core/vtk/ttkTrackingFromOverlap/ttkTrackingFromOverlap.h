@@ -32,6 +32,7 @@
 #include <vtkInformation.h>
 #include <vtkSmartPointer.h>
 #include <vtkMultiBlockDataSet.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -46,7 +47,7 @@ class ttkTrackingFromOverlap
 
     public:
         static ttkTrackingFromOverlap* New();
-        vtkTypeMacro(ttkTrackingFromOverlap, vtkUnstructuredGridAlgorithm)
+        vtkTypeMacro(ttkTrackingFromOverlap, vtkUnstructuredGridAlgorithm);
 
         vtkSetMacro(LabelFieldName, string);
         vtkGetMacro(LabelFieldName, string);

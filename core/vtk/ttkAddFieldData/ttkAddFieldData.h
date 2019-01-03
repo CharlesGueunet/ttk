@@ -16,6 +16,7 @@
 // VTK includes
 #include <vtkPassInputTypeAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -29,7 +30,7 @@ class ttkAddFieldData
 
     public:
         static ttkAddFieldData* New();
-        vtkTypeMacro(ttkAddFieldData, vtkPassInputTypeAlgorithm)
+        vtkTypeMacro(ttkAddFieldData, vtkPassInputTypeAlgorithm);
 
         // default ttk setters
         vtkSetMacro(debugLevel_, int);

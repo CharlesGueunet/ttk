@@ -32,6 +32,7 @@
 #include<vtkSmartPointer.h>
 #include<vtkTable.h>
 #include<vtkTableAlgorithm.h>
+#include <vtkSetGet.h>
 
 #include<DimensionReduction.h>
 #include<ttkWrapper.h>
@@ -54,7 +55,7 @@ class ttkDimensionReduction
     };
 
     static ttkDimensionReduction* New();
-    vtkTypeMacro(ttkDimensionReduction, vtkTableAlgorithm)
+    vtkTypeMacro(ttkDimensionReduction, vtkTableAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

@@ -11,6 +11,7 @@
 #include <vtkPoints.h>
 #include <vtkSmartPointer.h>
 #include <vtkDataSetWriter.h>
+#include <vtkSetGet.h>
 
 #include <string>
 #include <vector>

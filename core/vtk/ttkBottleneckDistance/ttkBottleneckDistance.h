@@ -38,6 +38,7 @@
 #include                  <vtkSmartPointer.h>
 #include                  <vtkUnstructuredGrid.h>
 #include                  <vtkCellData.h>
+#include                  <vtkSetGet.h>
 
 // Misc.
 #include <random>

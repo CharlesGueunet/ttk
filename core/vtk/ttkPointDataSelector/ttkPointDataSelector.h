@@ -30,6 +30,7 @@
 #include<vtkPointData.h>
 #include<vtkSmartPointer.h>
 #include<vtkUnsignedShortArray.h>
+#include<vtkSetGet.h>
 
 // ttk code includes
 #include<Wrapper.h>
@@ -44,7 +45,7 @@ class ttkPointDataSelector
   public:
 
     static ttkPointDataSelector* New();
-    vtkTypeMacro(ttkPointDataSelector, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkPointDataSelector, vtkDataSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

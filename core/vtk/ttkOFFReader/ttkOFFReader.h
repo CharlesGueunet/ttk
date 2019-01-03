@@ -11,9 +11,10 @@
 #pragma once
 
 #include <vtkFiltersCoreModule.h>
-#include "vtkPoints.h"
-#include "vtkSmartPointer.h"
-#include "vtkUnstructuredGridAlgorithm.h"
+#include <vtkPoints.h>
+#include <vtkSmartPointer.h>
+#include <vtkUnstructuredGridAlgorithm.h>
+#include <vtkSetGet.h>
 
 #include <string>
 #include <vector>

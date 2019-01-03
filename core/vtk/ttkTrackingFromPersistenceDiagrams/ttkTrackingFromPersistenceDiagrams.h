@@ -25,6 +25,7 @@
 #include                  <vtkCellType.h>
 #include                  <vtkCellData.h>
 #include                  <vtkIndent.h>
+#include                  <vtkSetGet.h>
 
 #ifndef TTK_PLUGIN
 class VTKFILTERSCORE_EXPORT ttkTrackingFromPersistenceDiagrams

@@ -3,9 +3,15 @@ include(functions.cmake)
 option(TTK_BUILD_STANDALONE_PARAVIEW_PLUGINS "Build one plugin per TTK filter" OFF)
 mark_as_advanced(TTK_BUILD_STANDALONE_PARAVIEW_PLUGINS)
 
-find_package(ParaView REQUIRED)
-include(${PARAVIEW_USE_FILE})
-include_directories(${PARAVIEW_INCLUDE_DIRS})
+if (CMAKE_PROJECT_NAME STREQUAL "ParaView")
+   if(NOT PARAVIEW_INCLUDE_DIRS)
+      include_directories(${VTK_INCLUDE_DIRS})
+   endif()
+else()
+   find_package(ParaView REQUIRED)
+   include(${PARAVIEW_USE_FILE})
+   include_directories(${PARAVIEW_INCLUDE_DIRS})
+endif()
 
 if (MSVC)
 	set(TTK_INSTALL_PLUGIN_DIR
@@ -49,6 +55,12 @@ endforeach()
 
 if (NOT TTK_BUILD_STANDALONE_PARAVIEW_PLUGINS)
 
+   list(LENGTH TTK_PV_XML TTK_NB_FILTERS)
+   if(NOT ${TTK_NB_FILTERS})
+      message(WARNING "TTK: No filter selected for build")
+      return()
+   endif()
+
    set_property(GLOBAL PROPERTY TTK_VTKWRAPPER_DIRS    "")
 	# Build the ParaView plugin, if we're building with ParaView
 	# and this wrapper library has a plugin
@@ -71,5 +83,8 @@ if (NOT TTK_BUILD_STANDALONE_PARAVIEW_PLUGINS)
 
 	target_link_libraries(TopologyToolKit PUBLIC ${VTK_LIBRARIES} ${TTK_PV_LINKS} ttkPVTriangulation)
 
-	install(TARGETS TopologyToolKit DESTINATION ${TTK_INSTALL_PLUGIN_DIR})
+
+	if(NOT ${TTK_SUPERBUILD_BUILD})
+		install(TARGETS TopologyToolKit DESTINATION ${TTK_INSTALL_PLUGIN_DIR})
+	endif()
 endif()

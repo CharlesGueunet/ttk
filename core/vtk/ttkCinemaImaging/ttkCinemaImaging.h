@@ -18,6 +18,7 @@
 // VTK includes
 #include <vtkInformation.h>
 #include <vtkMultiBlockDataSetAlgorithm.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -32,7 +33,7 @@ class ttkCinemaImaging
     public:
 
         static ttkCinemaImaging* New();
-        vtkTypeMacro(ttkCinemaImaging, vtkMultiBlockDataSetAlgorithm)
+        vtkTypeMacro(ttkCinemaImaging, vtkMultiBlockDataSetAlgorithm);
 
         vtkSetVector2Macro(Resolution, int);
         vtkGetVector2Macro(Resolution, int);

@@ -25,6 +25,7 @@
 // VTK includes
 #include <vtkMultiBlockDataSetAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <DepthImageBasedGeometryApproximation.h>
@@ -40,7 +41,7 @@ class ttkDepthImageBasedGeometryApproximation
     public:
 
         static ttkDepthImageBasedGeometryApproximation* New();
-        vtkTypeMacro(ttkDepthImageBasedGeometryApproximation, vtkMultiBlockDataSetAlgorithm)
+        vtkTypeMacro(ttkDepthImageBasedGeometryApproximation, vtkMultiBlockDataSetAlgorithm);
 
         vtkSetMacro(Subsampling, int);
         vtkGetMacro(Subsampling, int);

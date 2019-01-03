@@ -14,6 +14,7 @@
 // VTK includes
 #include <vtkUnstructuredGridAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <IcoSphere.h>
@@ -29,7 +30,7 @@ class ttkIcoSphere
     public:
 
         static ttkIcoSphere* New();
-        vtkTypeMacro(ttkIcoSphere, vtkUnstructuredGridAlgorithm)
+        vtkTypeMacro(ttkIcoSphere, vtkUnstructuredGridAlgorithm);
 
         vtkSetMacro(Subdivisions, int);
         vtkGetMacro(Subdivisions, int);

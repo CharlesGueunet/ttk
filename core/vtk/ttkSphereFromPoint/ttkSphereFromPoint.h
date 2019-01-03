@@ -33,6 +33,7 @@
 #include                  <vtkSmartPointer.h>
 #include                  <vtkSphereSource.h>
 #include                  <vtkType.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ttkWrapper.h>

@@ -63,6 +63,7 @@
 #include                  <vtkCellType.h>
 #include                  <vtkCellData.h>
 #include                  <vtkUnsignedCharArray.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <MandatoryCriticalPoints.h>

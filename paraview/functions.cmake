@@ -11,14 +11,25 @@
 #     SOURCES <source list>
 #     PLUGIN_VERSION <version>
 #     PLUGIN_XML <XML file for the plugin>
-#     LINK <libraries to link>: DEPRECATED)
+#     LINK <libraries to link> (Only used when STANDALONE_PARAVIEW_PLUGINS is ON))
 #
 function(ttk_add_paraview_plugin library)
-	cmake_parse_arguments(ARG "" "PLUGIN_XML;PLUGIN_VERSION"
-		"SOURCES;LINK" ${ARGN})
+	cmake_parse_arguments(ARG "" "PLUGIN_XML;PLUGIN_VERSION" "SOURCES;LINK" ${ARGN})
 
 	if(DEFINED ARG_PLUGIN_VERSION)
 		message(DEPRECATED ": VERSION is deprecated in ttk_add_paraview_plugin (${CMAKE_CURRENT_SOURCE_DIR}) ")
+	endif()
+
+	if(TTK_SUPERBUILD_BUILD)
+		# Each filter is disabled by default in the Superbuild: whitelsit
+		# Set to OFF if not already defined
+		option(TTK_BUILD_${library}_FILTER "Build the filter ${library}" OFF)
+		mark_as_advanced(TTK_BUILD_${library}_FILTER)
+
+		# if this filter is disabled: stop here
+		if(NOT ${TTK_BUILD_${library}_FILTER})
+			return()
+		endif()
 	endif()
 
 	list(APPEND TTK_PV_XML     ${CMAKE_CURRENT_SOURCE_DIR}/${ARG_PLUGIN_XML})

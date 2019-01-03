@@ -35,6 +35,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkCellData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <Wrapper.h>

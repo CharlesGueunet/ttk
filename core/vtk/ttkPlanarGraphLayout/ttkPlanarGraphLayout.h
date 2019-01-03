@@ -34,6 +34,7 @@
 // VTK includes
 #include <vtkUnstructuredGridAlgorithm.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <PlanarGraphLayout.h>
@@ -49,7 +50,7 @@ class ttkPlanarGraphLayout
     public:
 
         static ttkPlanarGraphLayout* New();
-        vtkTypeMacro(ttkPlanarGraphLayout, vtkUnstructuredGridAlgorithm)
+        vtkTypeMacro(ttkPlanarGraphLayout, vtkUnstructuredGridAlgorithm);
 
         // getters and setters for optional field data
         vtkSetMacro(UseSequences, bool);

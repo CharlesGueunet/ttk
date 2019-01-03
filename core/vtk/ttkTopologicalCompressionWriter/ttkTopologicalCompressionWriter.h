@@ -28,6 +28,7 @@
 #include                  <vtkImageData.h>
 #include                  <vtkCellData.h>
 #include                  <vtkWriter.h>
+#include                  <vtkSetGet.h>
 
 // STD
 #include                  <string>

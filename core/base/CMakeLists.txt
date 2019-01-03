@@ -13,15 +13,16 @@ endforeach()
 add_library(baseAll INTERFACE)
 target_link_libraries(baseAll INTERFACE ${LIB_LIST})
 
-install(TARGETS baseAll
-	EXPORT TTKBaseTargets
-	RUNTIME DESTINATION bin/ttk
-	ARCHIVE DESTINATION lib/ttk
-	LIBRARY DESTINATION lib/ttk)
-
-install(EXPORT TTKBaseTargets
-	NAMESPACE ttk::base::
-	DESTINATION lib/cmake/ttk)
+if(NOT ${TTK_SUPERBUILD_BUILD})
+	install(TARGETS baseAll
+		EXPORT TTKBaseTargets
+		RUNTIME DESTINATION bin/ttk
+		ARCHIVE DESTINATION lib/ttk
+		LIBRARY DESTINATION lib/ttk)
+	install(EXPORT TTKBaseTargets
+		NAMESPACE ttk::base::
+		DESTINATION lib/cmake/ttk)
+endif()
 
 configure_file(TTKBaseConfig.cmake.in TTKBaseConfig.cmake @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/TTKBaseConfig.cmake"

@@ -43,6 +43,7 @@
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
 #include                  <vtkTable.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <UncertainDataEstimator.h>

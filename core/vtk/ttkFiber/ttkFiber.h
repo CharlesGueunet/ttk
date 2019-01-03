@@ -39,6 +39,7 @@
 #include                  <vtkPointData.h>
 #include                  <vtkPolyData.h>
 #include                  <vtkSmartPointer.h>
+#include <vtkSetGet.h>
 
 // ttk code includes
 #include                  <Wrapper.h>

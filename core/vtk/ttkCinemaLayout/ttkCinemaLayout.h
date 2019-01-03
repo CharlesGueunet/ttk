@@ -15,6 +15,7 @@
 // VTK includes
 #include <vtkXMLPMultiBlockDataWriter.h>
 #include <vtkInformation.h>
+#include <vtkSetGet.h>
 
 // TTK includes
 #include <ttkWrapper.h>
@@ -29,7 +30,7 @@ class ttkCinemaLayout
     public:
 
         static ttkCinemaLayout* New();
-        vtkTypeMacro(ttkCinemaLayout, vtkXMLPMultiBlockDataWriter)
+        vtkTypeMacro(ttkCinemaLayout, vtkXMLPMultiBlockDataWriter);
 
         vtkSetMacro(RowAxis, int);
         vtkGetMacro(RowAxis, int);

@@ -23,6 +23,7 @@
 #include                  <vtkUnstructuredGrid.h>
 #include                  <vtkCellType.h>
 #include                  <vtkCellData.h>
+#include                  <vtkSetGet.h>
 
 #include                  <ttkTrackingFromPersistenceDiagrams.h>
 

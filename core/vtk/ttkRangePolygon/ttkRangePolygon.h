@@ -62,6 +62,7 @@
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
 #include                  <vtkUnstructuredGrid.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ScalarFieldSmoother.h>

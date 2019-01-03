@@ -37,6 +37,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 #ifndef TTK_PLUGIN
 class VTKFILTERSCORE_EXPORT ttkTriangulationRequest
@@ -63,15 +64,15 @@ class ttkTriangulationRequest
     };
 
     static ttkTriangulationRequest* New();
-    vtkTypeMacro(ttkTriangulationRequest, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkTriangulationRequest, vtkDataSetAlgorithm);
 
-      // default ttk setters
-      vtkSetMacro(debugLevel_, int);
+    // default ttk setters
+    vtkSetMacro(debugLevel_, int);
 
-    void SetThreadNumber(int threadNumber){\
-      ThreadNumber = threadNumber;\
-        SetThreads();\
-    }\
+    void SetThreadNumber(int threadNumber){
+      ThreadNumber = threadNumber;
+      SetThreads();
+    }
     void SetUseAllCores(bool onOff){
       UseAllCores = onOff;
       SetThreads();

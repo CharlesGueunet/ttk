@@ -30,6 +30,7 @@
 #include<vtkObjectFactory.h>
 #include<vtkPointData.h>
 #include<vtkSmartPointer.h>
+#include<vtkSetGet.h>
 
 // ttk code includes
 #include<Wrapper.h>
@@ -44,7 +45,7 @@ class ttkTableDataSelector
   public:
 
     static ttkTableDataSelector* New();
-    vtkTypeMacro(ttkTableDataSelector, vtkTableAlgorithm)
+    vtkTypeMacro(ttkTableDataSelector, vtkTableAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

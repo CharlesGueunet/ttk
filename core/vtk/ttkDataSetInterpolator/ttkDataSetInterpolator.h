@@ -33,6 +33,7 @@
 #include<vtkPointData.h>
 #include<vtkSmartPointer.h>
 #include<vtkProbeFilter.h>
+#include <vtkSetGet.h>
 
 #include<Wrapper.h>
 
@@ -46,7 +47,7 @@ class ttkDataSetInterpolator
   public:
 
     static ttkDataSetInterpolator* New();
-    vtkTypeMacro(ttkDataSetInterpolator, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkDataSetInterpolator, vtkDataSetAlgorithm);
 
       // default ttk setters
       vtkSetMacro(debugLevel_, int);

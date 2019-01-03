@@ -36,6 +36,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkUnsignedShortArray.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ScalarFieldSmoother.h>

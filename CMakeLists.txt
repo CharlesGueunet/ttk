@@ -4,6 +4,8 @@ project(ttk VERSION 0.9.8 LANGUAGES CXX)
 option(TTK_BUILD_VTK_WRAPPERS "Build the TTK VTK Wrappers" ON)
 option(TTK_BUILD_PARAVIEW_PLUGINS "Build the TTK ParaView Plugins" ON)
 option(TTK_BUILD_STANDALONE_APPS "Build the TTK Standalone Applications" ON)
+option(TTK_SUPERBUILD_BUILD "Activate only when TTK is built inside the paraview superbuild" OFF)
+mark_as_advanced(TTK_SUPERBUILD_BUILD)
 
 include(functions.cmake)
 
@@ -14,11 +16,11 @@ endif()
 add_subdirectory(core)
 
 if (TTK_BUILD_PARAVIEW_PLUGINS)
-	add_subdirectory(paraview)
+   add_subdirectory(paraview)
 endif()
 
 if (TTK_BUILD_STANDALONE_APPS)
-	add_subdirectory(standalone)
+   add_subdirectory(standalone)
 endif()
 
 ttk_print_summary()

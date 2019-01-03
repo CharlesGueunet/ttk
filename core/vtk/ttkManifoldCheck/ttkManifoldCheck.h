@@ -41,6 +41,7 @@
 #include                  <vtkObjectFactory.h>
 #include                  <vtkPointData.h>
 #include                  <vtkSmartPointer.h>
+#include                  <vtkSetGet.h>
 
 // ttk code includes
 #include                  <ManifoldCheck.h>
@@ -60,7 +61,7 @@ class ttkManifoldCheck
   public:
     
     static ttkManifoldCheck* New();
-    vtkTypeMacro(ttkManifoldCheck, vtkDataSetAlgorithm)
+    vtkTypeMacro(ttkManifoldCheck, vtkDataSetAlgorithm);
     
     // default ttk setters
     vtkSetMacro(debugLevel_, int);
