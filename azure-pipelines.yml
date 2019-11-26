@@ -163,7 +163,7 @@ jobs:
 # ------------------------------
 
 - job:
-  displayName: MacOS-PV-Python3-OpenMP-Make
+  displayName: MacOS-PV-Python3-OpenMP-Make (no install)
   timeoutInMinutes: 180
   pool:
     vmImage: 'macOS-latest'
@@ -183,29 +183,31 @@ jobs:
   - task: CMake@1
     inputs:
       workingDirectory: 'ParaView-v5.7.0/build'
-      cmakeArgs: '.. -DCMAKE_INSTALL_PREFIX=$(Build.ArtifactStagingDirectory)/pv-install -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_TESTING=OFF -DPARAVIEW_ENABLE_PYTHON=ON -DVTK_PYTHON_VERSION=3 -DPARAVIEW_BUILD_QT_GUI=NO'
+      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DPARAVIEW_BUILD_TESTING=OFF -DPARAVIEW_ENABLE_PYTHON=ON -DVTK_PYTHON_VERSION=3 -DPARAVIEW_BUILD_QT_GUI=NO'
     displayName: 'Configure ParaView'
 
   - script: |
-      cmake --build . --target install -- -j 4
+      cmake --build . -- -j 4
     workingDirectory: 'ParaView-v5.7.0/build'
-    displayName: 'Build and install ParaView'
+    displayName: 'Build ParaView'
 
   - task: CMake@1
     inputs:
       workingDirectory: 'build/'
-      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(Build.ArtifactStagingDirectory)/ttk-install -DParaView_DIR=$(Build.ArtifactStagingDirectory)/pv-install/lib/cmake/paraview-5.7'
+      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DParaView_DIR=./ParaView-v5.7.0/build/'
     displayName: 'Configure TTK'
 
   - script: |
-      cmake --build . --target install -- -j 4
+      cmake --build . -- -j 4
     workingDirectory: 'build/'
-    displayName: 'Build and install TTK'
+    displayName: 'Build TTK'
 
   - script: |
       ./bin/ttkBlankCmd -i $(Build.SourcesDirectory)/examples/data/inputData.vtu
-    workingDirectory: '$(Build.ArtifactStagingDirectory)/ttk-install/'
-    displayName: 'Test TTK Command linee'
+      ls -R .
+      otool -L ./bin/ttkBlankCmd
+    workingDirectory: 'build'
+    displayName: 'Test TTK Command line'
 
 # ------------------------------
 # Windows build
