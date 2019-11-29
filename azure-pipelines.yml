@@ -194,19 +194,19 @@ jobs:
   - task: CMake@1
     inputs:
       workingDirectory: 'build/'
-      cmakeArgs: '.. -DCMAKE_BUILD_TYPE=Release -DParaView_DIR=./ParaView-v5.7.0/build/'
+      cmakeArgs: '.. -DCMAKE_INSTALL_PREFIX=$(Build.ArtifactStagingDirectory)/ttk-install -DCMAKE_BUILD_TYPE=Release -DParaView_DIR=./ParaView-v5.7.0/build/'
     displayName: 'Configure TTK'
 
   - script: |
-      cmake --build . -- -j 4
+      cmake --build . --target install -- -j 4
     workingDirectory: 'build/'
-    displayName: 'Build TTK'
+    displayName: 'Build and install TTK'
 
   - script: |
-      ./bin/ttkBlankCmd -i $(Build.SourcesDirectory)/examples/data/inputData.vtu
       ls -R .
       otool -L ./bin/ttkBlankCmd
-    workingDirectory: 'build'
+      ./bin/ttkBlankCmd -i $(Build.SourcesDirectory)/examples/data/inputData.vtu
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/ttk-install/'
     displayName: 'Test TTK Command line'
 
 # ------------------------------
