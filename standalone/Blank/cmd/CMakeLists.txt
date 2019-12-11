@@ -9,11 +9,11 @@ if(TARGET ttkBlank)
       ttkBlank
       ttkProgramBase
     )
-  # set_target_properties(${PROJECT_NAME}
-  #   PROPERTIES
-  #     INSTALL_RPATH
-  #       "${CMAKE_INSTALL_PREFIX}/lib64/TopologyToolKit;${CMAKE_INSTALL_PREFIX}/lib/ttk"
-  #   )
+  set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+      INSTALL_RPATH
+        "${CMAKE_INSTALL_PREFIX}/lib64/TopologyToolKit;${CMAKE_INSTALL_PREFIX}/lib/ttk"
+    )
   install(
     TARGETS
       ${PROJECT_NAME}
