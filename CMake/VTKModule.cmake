@@ -2,15 +2,15 @@
 # this list can then be parsed using the cmake_parse_arguments method
 macro(ttk_parse_module_file moduleFile)
   # reconfigure when the module file is changed
+  get_filename_component(moduleRealFile ${moduleFile} REALPATH)
   set_property(
     DIRECTORY
       "${CMAKE_CURRENT_SOURCE_DIR}"
     APPEND PROPERTY
     CMAKE_CONFIGURE_DEPENDS
-      ${moduleFile}
+      ${moduleRealFile}
   )
-  # add_custom_target(CHECK_FILE_LISTS ALL ${CMAKE_CURRENT_LIST_DIR}/ttk.module)
-  file(READ ${moduleFile} moduleFileContent)
+  file(READ ${moduleRealFile} moduleFileContent)
   # Replace comments.
   string(REGEX REPLACE "#[^\n]*\n" "\n" moduleFileContent "${moduleFileContent}")
   # Use argument splitting.
@@ -36,26 +36,27 @@ macro(ttk_add_vtk_module)
       HEADERS
         ${TTK_HEADERS}
       )
+
+    vtk_module_link(${TTK_NAME}
+      PUBLIC
+        ${VTK_LIBRARIES}
+        ${TTK_DEPENDS}
+      )
+
+    install(
+      TARGETS
+        ${TTK_NAME}
+      EXPORT
+        TTKVTKTargets
+      RUNTIME DESTINATION
+        bin/ttk
+      ARCHIVE DESTINATION
+        lib/ttk
+      LIBRARY DESTINATION
+        lib/ttk
+      )
   endif()
 
-  vtk_module_link(${TTK_NAME}
-    PUBLIC
-      ${VTK_LIBRARIES}
-      ${TTK_DEPENDS}
-    )
-
-  install(
-    TARGETS
-      ${TTK_NAME}
-    EXPORT
-      TTKVTKTargets
-    RUNTIME DESTINATION
-      bin/ttk
-    ARCHIVE DESTINATION
-      lib/ttk
-    LIBRARY DESTINATION
-      lib/ttk
-    )
 
   if(NOT "${TTK_INSTALL_PLUGIN_DIR}" STREQUAL "")
     install(
@@ -72,9 +73,9 @@ macro(ttk_add_vtk_module)
 
   # Fix a race condition in the VTK's CMake:
   # https://discourse.vtk.org/t/building-vtk-modules-with-dependencies-results-in-race-condition-in-make/1711
-  if(TARGET ${TTK_NAME}-hierarchy)
-    add_dependencies(${TTK_NAME} ${TTK_NAME}-hierarchy)
-  endif()
+  # if(TARGET ${TTK_NAME}-hierarchy)
+  #   add_dependencies(${TTK_NAME} ${TTK_NAME}-hierarchy)
+  # endif()
 endmacro()
 
 # whitelist mechanism

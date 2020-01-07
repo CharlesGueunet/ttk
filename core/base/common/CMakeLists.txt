@@ -11,5 +11,8 @@ ttk_add_base_library(common
         Os.h
         ProgramBase.h
         Wrapper.h
+
+        ArrayIterator.h
+        STLIterator.h
         )
 

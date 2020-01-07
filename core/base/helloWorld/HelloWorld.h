@@ -21,6 +21,8 @@
 #include <Debug.h>
 #include <Triangulation.h>
 
+#include <ArrayIterator.h>
+
 namespace ttk {
 
   /**
@@ -124,6 +126,18 @@ namespace ttk {
       }
 
       return 1; // return success
+    }
+
+    template <class dataType>
+    int computeAverages(ArrayHandler<dataType> input,
+                        ArrayHandler<dataType> output,
+                        const ttk::Triangulation *triangulation) const {
+      this->printMsg("Custom avg");
+      for(auto el : input) {
+        std::cout << el << std::endl;
+      }
+      std::cout << "test access " << input[2] << std::endl;
+      return 1;
     }
 
   }; // HelloWorld class

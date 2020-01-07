@@ -1,5 +1,6 @@
 #include <ttkHelloWorld.h>
 
+#include <vtkArrayDispatch.txx>
 #include <vtkDataObject.h> // For port information
 #include <vtkObjectFactory.h> // for new macro
 
@@ -7,6 +8,10 @@
 #include <vtkDataSet.h>
 #include <vtkPointData.h>
 #include <vtkSmartPointer.h>
+
+#include "ArrayIterator.h"
+#include "vtkArrayDispatch.h"
+#include "vtkDataArrayRange.h"
 
 // A VTK macro that enables the instantiation of this class via ::New()
 // You do not have to modify this
@@ -71,6 +76,28 @@ int ttkHelloWorld::FillOutputPortInformation(int port, vtkInformation *info) {
 
   return 1;
 }
+
+struct ScalarWorker {
+
+  ScalarWorker(ttkHelloWorld *a, ttk::Triangulation *t)
+    : algo(a), triangulation(t) {
+  }
+
+  template <template <typename> class ArrayType, typename ElType>
+  void operator()(ArrayType<ElType> *inputArray,
+                  ArrayType<ElType> *outputArray) {
+    auto inputRange = vtk::DataArrayValueRange<1>(inputArray);
+    ArrayHandler<ElType> input(inputRange.begin(), inputRange.end());
+    auto outputRange = vtk::DataArrayValueRange<1>(outputArray);
+    ArrayHandler<ElType> output(outputRange.begin(), outputRange.end());
+
+    algo->computeAverages(input, output, triangulation);
+  }
+
+private:
+  ttk::Triangulation *triangulation;
+  ttkHelloWorld* algo;
+};
 
 /**
  * TODO 10: Pass VTK data to the base code and convert base code output to VTK
@@ -156,17 +183,23 @@ int ttkHelloWorld::RequestData(vtkInformation *request,
   this->preconditionTriangulation(triangulation); // implemented in base class
 
   // Templatize over the different input array data types and call the base code
-  int status = 0; // this integer checks if the base code returns an error
-  switch(inputArray->GetDataType()) {
-    vtkTemplateMacro(status = this->computeAverages<VTK_TT>(
-                       (VTK_TT *)outputArray->GetVoidPointer(0),
-                       (VTK_TT *)inputArray->GetVoidPointer(0), triangulation));
-  }
-
+  // int status = 0; // this integer checks if the base code returns an error
+  // switch(inputArray->GetDataType()) {
+  //   vtkTemplateMacro(status = this->computeAverages<VTK_TT>(
+  //                      (VTK_TT *)outputArray->GetVoidPointer(0),
+  //                      (VTK_TT *)inputArray->GetVoidPointer(0), triangulation));
+  // }
   // On error cancel filter execution
-  if(status == 0)
-    return 0;
+  // if(status == 0)
+  //   return 0;
 
+  ScalarWorker scalarWorker(this, triangulation);
+  if(!vtkArrayDispatch::Dispatch2BySameValueType<
+       vtkArrayDispatch::AllTypes>::Execute(inputArray, outputArray,
+                                            scalarWorker)) {
+    // fallback
+    std::cerr << "Bad array type" << std::endl;
+  }
   // Get output vtkDataSet (which was already instantiated based on the
   // information provided by FillOutputPortInformation)
   vtkDataSet *outputDataSet = vtkDataSet::GetData(outputVector, 0);
