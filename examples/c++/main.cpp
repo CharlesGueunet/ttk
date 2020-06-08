@@ -137,7 +137,7 @@ int save(const std::vector<float> &pointSet,
   const int nbTriangles = triangleSetOff.size() - 1;
 
   f << "OFF" << std::endl;
-  f << pointSet.size() / 3 << " " << nbTriangles / 4 << " 0" << std::endl;
+  f << pointSet.size() / 3 << " " << nbTriangles << " 0" << std::endl;
 
   for(int i = 0; i < (int)pointSet.size() / 3; i++) {
     for(int j = 0; j < 3; j++) {

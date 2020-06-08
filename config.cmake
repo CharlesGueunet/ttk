@@ -193,9 +193,18 @@ else()
   message(STATUS "SQLITE3 not found, disabling SQLITE3 support in TTK.")
 endif()
 
-option(TTK_ENABLE_ZFP "Enable ZFP support" OFF)
-if(TTK_ENABLE_ZFP)
-  find_package(ZFP REQUIRED)
+find_package(ZFP QUIET)
+if(ZFP_INCLUDE_DIRS)
+  option(TTK_ENABLE_ZFP "Enable ZFP support" ON)
+else()
+  option(TTK_ENABLE_ZFP "Enable ZFP support" OFF)
+  message(STATUS "ZFP not found, disabling ZFP support in TTK.")
+endif()
+if(NOT TTK_ENABLE_ZFP)
+  # we do not want ZFP targets to remains if ZFP disable.
+  # a bit hacky but there is no clean way to remove the corresponding targets
+  unset(ZFP_DIR CACHE)
+  find_package(ZFP QUIET)
 endif()
 
 find_package(Eigen3 3.3 NO_MODULE)
