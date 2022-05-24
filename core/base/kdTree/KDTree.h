@@ -18,6 +18,7 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+#include <memory>
 
 namespace ttk {
   template <typename dataType>

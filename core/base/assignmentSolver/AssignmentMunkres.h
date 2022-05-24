@@ -15,6 +15,7 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+#include <tuple>
 
 namespace ttk {
 

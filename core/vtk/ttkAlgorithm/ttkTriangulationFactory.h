@@ -4,6 +4,8 @@
 
 #include <Debug.h>
 #include <unordered_map>
+#include <memory>
+
 #include <vtkType.h>
 
 class vtkDataSet;
